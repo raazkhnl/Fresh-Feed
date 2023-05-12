@@ -12,13 +12,14 @@ export class News extends Component {
 		category: "general",
 	};
 
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.state = {
 			articles: [],
 			loading: false,
 			page: 1,
 		};
+		document.title=`Fresh Feed - ${this.props.category.charAt(0).toUpperCase() + this.props.category.slice(1)}`
 	}
 	async updateNews(pageNo){
 		const url = `https://newsapi.org/v2/top-headlines?country=in&category=${this.props.category}&apiKey=5ed6668292e24f3a8d05038cae087b34&pagesize=${this.props.pageSize}&page=${this.state.page}`;
@@ -51,7 +52,7 @@ export class News extends Component {
 	render() {
 		return (
 			<div className="container my-3">
-				<h2>Fresh Feed - Top Headlines</h2>
+				<h2>Fresh Feed - Top {this.props.category.charAt(0).toUpperCase() + this.props.category.slice(1)} Headlines</h2>
 				{this.state.loading && <Spinner />}
 				<div className="row my-3">
 					{!this.state.loading &&
