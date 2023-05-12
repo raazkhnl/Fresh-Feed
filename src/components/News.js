@@ -20,53 +20,32 @@ export class News extends Component {
 			page: 1,
 		};
 	}
-	async componentDidMount() {
+	async updateNews(pageNo){
+		const url = `https://newsapi.org/v2/top-headlines?country=in&category=${this.props.category}&apiKey=5ed6668292e24f3a8d05038cae087b34&pagesize=${this.props.pageSize}&page=${this.state.page}`;
 		this.setState({ loading: true });
-		let url = `https://newsapi.org/v2/top-headlines?country=in&category=${this.props.category}&apiKey=5ed6668292e24f3a8d05038cae087b34&pagesize=18`;
 		let data = fetch(url);
 		let parsedData = await (await data).json();
-		this.setState({ loading: false });
 		this.setState({
 			articles: parsedData.articles,
 			totalResults: parsedData.totalResults,
+			loading: false
 		});
+			
+	}
+
+	async componentDidMount() {
+		this.updateNews();
+
 	}
 
 	prevHandler = async () => {
-		this.setState({ loading: true });
-		let url = `https://newsapi.org/v2/top-headlines?country=in&category=${
-			this.props.category
-		}&apiKey=5ed6668292e24f3a8d05038cae087b34&pagesize=18&page=${
-			this.state.page - 1
-		}`;
-		let data = await fetch(url);
-		let parsedData = await (await data).json();
-		this.setState({ loading: false });
-		this.setState({ articles: parsedData.articles });
-
-		this.setState({
-			page: this.state.page - 1,
-			articles: parsedData.articles,
-		});
+		this.setState({page: this.state.page -1});
+		this.updateNews();
 	};
 
 	nextHandler = async () => {
-		let url = `https://newsapi.org/v2/top-headlines?country=in&category=${
-			this.props.category
-		}&apiKey=5ed6668292e24f3a8d05038cae087b34&page=${
-			this.state.page + 1
-		}&pagesize=18`;
-		this.setState({ loading: true });
-		let data = await fetch(url);
-		let parsedData = await (await data).json();
-		this.setState({ loading: false });
-
-		this.setState({ articles: parsedData.articles });
-
-		this.setState({
-			page: this.state.page + 1,
-			articles: parsedData.articles,
-		});
+		this.setState({page: this.state.page + 1});
+		this.updateNews();
 	};
 
 	render() {
@@ -86,6 +65,7 @@ export class News extends Component {
 										newsUrl={element.url}
 										  author={element.author}
 										  date={element.publishedAt}
+										  sourceName={element.source.name}
 								/>
 								</div>
 							);
