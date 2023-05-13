@@ -1,26 +1,9 @@
-// import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
-export class Navbar extends Component {
-  // static propTypes = {}
-  searchHandler = async () => {
-		this.props.setProgress(20);
-		const url = `https://newsapi.org/v2/top-headlines?country=in&category=${this.props.category}&apiKey=5ed6668292e24f3a8d05038cae087b34&pagesize=${this.props.pageSize}&page=${this.state.page}&q=${this.props.query}`;
-		let data = fetch(url);
-		this.props.setProgress(50);
-		let parsedData = await (await data).json();
-		this.setState({
-			articles: parsedData.articles,
-			totalResults: parsedData.totalResults,
-			loading: false,
-		});
-		this.props.setProgress(100);
-	};
-
-  render() {
+const Navbar =()=> {
     return (
-      <div><nav className="navbar navbar-expand-lg bg-light">
+      <div><nav className="navbar navbar-expand-lg bg-light fixed-top">
       <div className="container-fluid">
         <Link className="navbar-brand" to="/">Fresh Feed</Link>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -66,13 +49,11 @@ export class Navbar extends Component {
           </ul>
           <form className="d-flex" role="search">
             <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-            <button className="btn btn-outline-success" type="submit" onClick={this.searchHandler}>Search</button>
+            <button className="btn btn-outline-success" type="submit" >Search</button>
           </form>
         </div>
       </div>
     </nav></div>
     )
   }
-}
-
 export default Navbar
