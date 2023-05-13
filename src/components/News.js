@@ -11,8 +11,8 @@ export class News extends Component {
 
 	static defaultProps = {
 		category: "general",
-		pageSize: "18"
-	};
+		pageSize: "18",
+		};
 
 	constructor(props) {
 		super(props);
@@ -20,26 +20,30 @@ export class News extends Component {
 			articles: [],
 			loading: true,
 			page: 1,
+			
 		};
 		document.title = `Fresh Feed - ${
 			this.props.category.charAt(0).toUpperCase() + this.props.category.slice(1)
 		}`;
 	}
-	async updateNews(pageNo) {
-		const url = `https://newsapi.org/v2/top-headlines?country=in&category=${this.props.category}&apiKey=5ed6668292e24f3a8d05038cae087b34&pagesize=${this.props.pageSize}&page=${this.state.page}`;
-		// this.setState({ loading: true });
+	async updateNews() {
+		this.props.setProgress(20);
+		const url = `https://newsapi.org/v2/top-headlines?country=in&category=${this.props.category}&apiKey=${this.props.apiKey}&pagesize=${this.props.pageSize}&page=${this.state.page}`;
 		let data = fetch(url);
+		this.props.setProgress(50);
 		let parsedData = await (await data).json();
 		this.setState({
 			articles: parsedData.articles,
 			totalResults: parsedData.totalResults,
 			loading: false,
 		});
+		this.props.setProgress(100);
+
 	}
 
 	async componentDidMount() {
 		this.updateNews();
-	}
+	}z
 
 	prevHandler = async () => {
 		this.setState({ page: this.state.page - 1 });
@@ -54,7 +58,7 @@ export class News extends Component {
 	fetchMoreData = async () => {
 		this.setState({ page: this.state.page + 1 });
 		this.setState({ loading: true });
-		const url = `https://newsapi.org/v2/top-headlines?country=in&category=${this.props.category}&apiKey=5ed6668292e24f3a8d05038cae087b34&pagesize=${this.props.pageSize}&page=${this.state.page}`;
+		const url = `https://newsapi.org/v2/top-headlines?country=in&category=${this.props.category}&apiKey=${this.props.apiKey}&pagesize=${this.props.pageSize}&page=${this.state.page}`;
 		let data = fetch(url);
 		let parsedData = await (await data).json();
 		this.setState({
@@ -63,6 +67,9 @@ export class News extends Component {
 			loading: false,
 		});
 	  };
+	  setProgress = (progress) => {
+		this.setState({progress: progress})
+	  }
 
 	render() {
 		return (
