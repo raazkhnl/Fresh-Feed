@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/cakeandme/static/css/main.e6c13ad2.css",
-    "main.js": "/cakeandme/static/js/main.bb16a96b.js",
-    "static/js/787.361b0a1f.chunk.js": "/cakeandme/static/js/787.361b0a1f.chunk.js",
-    "static/media/spinner.gif": "/cakeandme/static/media/spinner.dcf063c1fdcaefa45a9d.gif",
-    "index.html": "/cakeandme/index.html",
-    "main.e6c13ad2.css.map": "/cakeandme/static/css/main.e6c13ad2.css.map",
-    "main.bb16a96b.js.map": "/cakeandme/static/js/main.bb16a96b.js.map",
-    "787.361b0a1f.chunk.js.map": "/cakeandme/static/js/787.361b0a1f.chunk.js.map"
+    "main.css": "/freshfeed/static/css/main.e6c13ad2.css",
+    "main.js": "/freshfeed/static/js/main.fea4a7fb.js",
+    "static/js/787.73ee5b7b.chunk.js": "/freshfeed/static/js/787.73ee5b7b.chunk.js",
+    "static/media/spinner.gif": "/freshfeed/static/media/spinner.dcf063c1fdcaefa45a9d.gif",
+    "index.html": "/freshfeed/index.html",
+    "main.e6c13ad2.css.map": "/freshfeed/static/css/main.e6c13ad2.css.map",
+    "main.fea4a7fb.js.map": "/freshfeed/static/js/main.fea4a7fb.js.map",
+    "787.73ee5b7b.chunk.js.map": "/freshfeed/static/js/787.73ee5b7b.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.bb16a96b.js"
+    "static/js/main.fea4a7fb.js"
   ]
 }
