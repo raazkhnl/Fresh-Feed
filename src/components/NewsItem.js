@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 const NewsItem =(props)=> {
 		let { title, date, author, description, sourceName, imgUrl, newsUrl } =

@@ -1,6 +1,6 @@
 {
-  "homepage": "http://raazkhnl.github.io/cakeandme",
-  "name": "fresh-feed",
+  "homepage": "http://raazkhnl.github.io/freshfeed",
+  "name": "freshfeed",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
